@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/fonts.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#B4472A">
+<link rel="stylesheet" href="css/app.css">
+<title>Admin – EM-IT</title>
+</head>
+<body>
+<header class="bar"><div class="bar-in">
+<a class="brand" href="index.html"><i aria-hidden="true"></i>EM-IT <small>Admin</small></a>
+<div class="bar-right"><span id="who"></span><a class="link" href="portal.html">Mina sidor</a><button id="logout" class="link" type="button">Logga ut</button></div>
+</div></header>
+<main>
+<div id="msg"></div>
+<div id="content" hidden style="display:flex;flex-direction:column;gap:24px">
+<h1>Admin</h1>
+<div class="tabs" role="tablist" aria-label="Avdelningar">
+<button type="button" role="tab" data-tab="requests" aria-selected="true">Förfrågningar</button>
+<button type="button" role="tab" data-tab="tickets" aria-selected="false">Ärenden</button>
+<button type="button" role="tab" data-tab="customers" aria-selected="false">Kunder</button>
+<button type="button" role="tab" data-tab="services" aria-selected="false">Drift</button>
+<button type="button" role="tab" data-tab="invoices" aria-selected="false">Fakturor</button>
+</div>
+
+<section class="card" data-panel="requests"><h2>Förfrågningar från startsidan</h2><ul id="requests" class="list"></ul></section>
+
+<section class="card" data-panel="tickets" hidden><h2>Ärenden</h2><ul id="tickets" class="list"></ul></section>
+
+<div data-panel="customers" hidden style="display:flex;flex-direction:column;gap:24px">
+<section class="card"><h2>Företag</h2>
+<form id="companyform" class="inline">
+<div class="f"><label for="c-name">Företagsnamn</label><input id="c-name" name="name" type="text" maxlength="200" required></div>
+<div class="f"><label for="c-org">Org.nr (valfritt)</label><input id="c-org" name="org_number" type="text" maxlength="20"></div>
+<button class="btn" type="submit">Lägg till</button>
+</form>
+<ul id="companies" class="list"></ul></section>
+<section class="card"><h2>Användare</h2>
+<p class="lead">Nya användare bjuder du in i Supabase (Authentication). De dyker sedan upp här, och du kopplar dem till rätt företag.</p>
+<ul id="users" class="list"></ul></section>
+</div>
+
+<section class="card" data-panel="services" hidden><h2>Drift och status</h2>
+<form id="serviceform" class="inline">
+<div class="f"><label for="s-company">Företag</label><select id="s-company" name="company_id" required></select></div>
+<div class="f"><label for="s-kind">Typ</label><select id="s-kind" name="kind"><option value="hemsida">Hemsidan</option><option value="doman">Domän</option><option value="ssl">SSL</option><option value="backup">Säkerhetskopia</option><option value="annat">Övrigt</option></select></div>
+<div class="f"><label for="s-label">Namn, t.ex. domänen</label><input id="s-label" name="label" type="text" maxlength="200" required></div>
+<div class="f"><label for="s-detail">Notering (valfritt)</label><input id="s-detail" name="detail" type="text" maxlength="200"></div>
+<div class="f"><label for="s-renews">Förnyas (valfritt)</label><input id="s-renews" name="renews_on" type="date"></div>
+<button class="btn" type="submit">Lägg till</button>
+</form>
+<ul id="services" class="list"></ul></section>
+
+<section class="card" data-panel="invoices" hidden><h2>Fakturor</h2>
+<form id="invoiceform" class="inline">
+<div class="f"><label for="i-company">Företag</label><select id="i-company" name="company_id" required></select></div>
+<div class="f"><label for="i-number">Fakturanr</label><input id="i-number" name="number" type="text" maxlength="40" required></div>
+<div class="f"><label for="i-date">Datum</label><input id="i-date" name="issued_on" type="date" required></div>
+<div class="f"><label for="i-desc">Avser</label><input id="i-desc" name="description" type="text" maxlength="200"></div>
+<div class="f"><label for="i-amount">Belopp exkl. moms</label><input id="i-amount" name="amount" type="number" min="0" step="0.01" required></div>
+<div class="f"><label for="i-file">PDF (valfritt)</label><input id="i-file" name="file" type="file" accept="application/pdf"></div>
+<button class="btn" type="submit">Lägg till</button>
+</form>
+<ul id="invoices" class="list"></ul></section>
+</div>
+</main>
+<script src="js/vendor/supabase.js"></script>
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

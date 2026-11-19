@@ -1,0 +1,5 @@
+Inter och Space Grotesk är licensierade under SIL Open Font License 1.1.
+Inter: https://github.com/rsms/inter
+Space Grotesk: https://github.com/floriankarsten/space-grotesk
+Licenstext: https://openfontlicense.org
+Filerna är hämtade från Google Fonts och ligger här så att sidan inte behöver kontakta Google.

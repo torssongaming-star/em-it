@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /login.html
+Disallow: /portal.html
+Disallow: /admin.html
+
+Sitemap: https://em-it.se/sitemap.xml
